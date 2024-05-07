@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp QR Code</title>
+</head>
+<body>
+  <div id="qrcode-container"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
+  <script>
+    const socket = io("http://localhost:3000");
+
+    socket.on("qrcode-image", (imageUrl) => {
+      // Display QR code image on the frontend
+      const qrcodeContainer = document.getElementById("qrcode-container");
+      const imgElement = document.createElement("img");
+      imgElement.src = imageUrl;
+      qrcodeContainer.appendChild(imgElement);
+    });
+  </script>
+</body>
+</html>
